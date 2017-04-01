@@ -12,46 +12,47 @@ $requestArray = json_decode($requestJSONData,true);
 
 $con = mysqli_connect('localhost',USER,PASS,DB);
 
-$vehicleid = $requestArray["vehicleid"];
 $uuid = $requestArray["uuid"];
+$vehicleid = $requestArray["vehicleid"];
+$latitudeE7 = $requestArray["latitudeE7"];
+$longitudeE7=$requestArray["longitudeE7"];
+$timestampMs=$requestArray["timestampMs"];
 
-$triplocation = $requestArray["triplocation"];
-$triplocation=json_encode($triplocation);
-// $newtriplocation = array();
-// array_push($newtriplocation, $triplocation);
-// $newtriplocation = json_encode($newtriplocation);
 
-// echo $newtriplocation;
+$con = mysqli_connect('localhost',USER,PASS,DB);
+$sql="INSERT INTO tb_usertrips (UUID,VehicleID,isTripLive,Duration) VALUES('$uuid',$vehicleid,1,0);";
+print($sql."\n");
+$result = mysqli_query($con,$sql);
+if($result)
+{
+	echo 'query successfull';
+}
+else 
+{
+	echo "query fail";
+}
 
-$stmt = $con->query("SELECT * FROM tb_usertrips WHERE uuid='$uuid';");
-$tripid=$stmt->num_rows;
-// echo "tripid:".$tripid;
-$tripid=$tripid+1;
-
+$tripid = mysqli_insert_id($con);
+echo '{ "tripid": '.$tripid.' }';
 
 mysqli_close($con);
 $con = mysqli_connect('localhost',USER,PASS,DB);
 
-$sql="INSERT INTO tb_usertrips VALUES ('".$uuid."',$tripid,0,$vehicleid,'".$triplocation."',1)";
+$sql="INSERT INTO tb_usertrips_loc VALUES($tripid,$latitudeE7,$longitudeE7,$timestampMs);";
+print($sql."\n");
+$result=mysqli_query($con,$sql);
 
-// print "\n";
-// print $sql;
-
-$result= $con->query($sql);
-// if($result)
-// 	// print "db insert success";
-// else
-// {
-// 	// print mysqli_error($con);
-// 	// print "db insert fail\n";
-// 	// print $con->error;
-
-// }
-
+if($result)
+{
+	echo 'query successfull';
+}
+else 
+{
+	echo "query fail";
+}
 
 
 mysqli_close($con);
 
-echo $tripid;
 
 ?>
