@@ -1,10 +1,13 @@
 <?php
 	$con=mysqli_connect("localhost","root","","lids");
-$licenseid=mysqli_real_escape_string($con,$_POST['licenseid']);
-$cf=mysqli_real_escape_string($con,$_POST['cf']);
+	$requestJSONData = file_get_contents('php://input');
+	$requestArray = json_decode($requestJSONData,true);
+	print_r($requestArray);
+$licenseid=$requestArray['licenseid'];
+$cf=$requestArray['cf'];
 $cf=(int)$cf;
 echo $cf;
-$startdate=mysqli_real_escape_string($con,$_POST['startdate']);
+$startdate=$requestArray['startdate'];
 
 
 $stget = mysqli_prepare($con, "SELECT * FROM user WHERE licenseid= ?");
@@ -12,12 +15,12 @@ mysqli_stmt_bind_param($stget, "s", $licenseid);
 mysqli_stmt_execute($stget);
 mysqli_stmt_store_result($stget);
     mysqli_stmt_bind_result($stget, $licenseid, $currentCF, $startdate, $Cfquota);
-    
+
     $response = array();
-    $response["success"] = false;  
-    
+    $response["success"] = false;
+
     while(mysqli_stmt_fetch($stget)){
-        $response["success"] = true;  
+        $response["success"] = true;
         $response["licenseid"] = $licenseid;
 	$response["currentCF"] = $currentCF;
         $response["startdate"] = $startdate;
