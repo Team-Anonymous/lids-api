@@ -1,7 +1,7 @@
 <?php
 	$con=mysqli_connect("localhost","root","","lids");
 
-$name=$_POST("uuid");
+$uuid=$_POST("uuid");
 $username=$_POST("username");
 $licenseno=$_POST("licenseno");
 $vehicleid=$_POST("vehicleid");
