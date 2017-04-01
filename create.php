@@ -8,7 +8,7 @@ print_r($requestArray);
 $con = mysqli_connect('localhost',USER,PASS,DB);
 $vehicleid = $requestArray["vehicleid"];
 $uuid = $requestArray["uuid"];
-echo "uuid : " .$uuid;
+echo "uuid: " .$uuid;
 $triplocation = $requestArray["triplocation"];
 $triplocation=json_encode($triplocation);
 echo $triplocation;
