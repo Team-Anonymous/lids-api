@@ -10,7 +10,7 @@ $stget = mysqli_prepare($con, "SELECT * FROM user WHERE licenseid= ?");
 mysqli_stmt_bind_param($stget, "s", $licenseid);
 mysqli_stmt_execute($stget);
 mysqli_stmt_store_result($stget);
-    mysqli_stmt_bind_result($stget, $licenseid, $currentCF, $startdate, $EstimatedExpiry, $Cfquota);
+    mysqli_stmt_bind_result($stget, $licenseid, $currentCF, $startdate, $Cfquota);
     
     $response = array();
     $response["success"] = false;  
@@ -20,7 +20,6 @@ mysqli_stmt_store_result($stget);
         $response["licenseid"] = $licenseid;
 	$response["currentCF"] = $currentCF;
         $response["startdate"] = $startdate;
-        $response["EstimatedExpiry"] $EstimatedExpiry;
         $response["CFquota"]=$CFquota;
     }
 $sql = mysqli_prepare($con, "update tb_pollutionquotient set CurrentCF= ? where licenseid = ?");
