@@ -16,6 +16,10 @@
     
     if(mysqli_stmt_fetch($statement)){
         $response["success"] = true;  
+        echo ($response);
     }
-    echo ($response);
+    else{
+        echo "authentication failed !";
+    }
+    
 ?>
