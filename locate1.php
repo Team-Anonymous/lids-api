@@ -8,19 +8,14 @@ $con = mysqli_connect(HOST,USER,PASS,DB);
 
 $vehicle_id=mysqli_real_escape_string($con, $_POST['vehicle_id']);
 
-$sql = "select TripLocation from location where vehicle_id in('1');"; 
+$sql = "select TripLocation from location where vehicle_id in('".$vehicle_id."');"; 
 $res = mysqli_query($con,$sql);
  
 $result = array();
  
-while($row = mysqli_fetch_array($res)){
-array_push($result,
-array('latitude'=>$row[0],
-'longitude'=>$row[1]
-));
-}
- 
-echo json_encode(array("result"=>$result));
+$data = json_decode($res);
+
+echo $data;
  
 mysqli_close($con);
 ?>
