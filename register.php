@@ -11,5 +11,6 @@ mysqli_stmt_bind_param($statement,"ssssi",$uuid,$username,$password,$licenseno,$
 mysqli_stmt_execute($statement);
 mysqli_stmt_close($statement);
 echo $uuid;
+echo "hello";
 mysqli_close($con);
 ?>
