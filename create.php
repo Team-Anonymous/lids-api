@@ -15,7 +15,7 @@ $sql = "select COUNT(*) from tb_usertrips where uuid in('".$uuid."');";
 $res = mysqli_query($con,$sql);
 $tripid=$res+1;
 echo "tripid:".$tripid;
-
+echo $uuid;
 $sql = "INSERT INTO tb_usertrips VALUES('".$uuid."','".$tripid."',0,'".$vehicleid."','".$triplocation."',true);";
 print $sql;
 $result=mysqli_query($con,$sql);
