@@ -19,12 +19,11 @@ $uuid = $requestArray["uuid"];
 $triplocation = $requestArray["triplocation"];
 
 $triplocation=json_encode($triplocation);
-
 $newtriplocation = array();
-array_push(newtriplocation, $triplocation);
+array_push($newtriplocation, $triplocation);
 $newtriplocation = json_encode($newtriplocation);
 
-// echo $triplocation;
+echo $newtriplocation;
 
 $stmt = $con->query("SELECT * FROM tb_usertrips WHERE uuid='$uuid';");
 $tripid=$stmt->num_rows;
