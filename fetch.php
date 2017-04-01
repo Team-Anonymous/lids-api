@@ -12,7 +12,7 @@ $vehicleID=107;
 $sql = "select TripLocation from tb_usertrips where vehicleID in('".$vehicleID."');"; 
 $res = mysqli_query($con,$sql);
 
-var_dump(json_decode($json,true));
+var_dump(json_decode($res,true));
  
 mysqli_close($con);
 ?>
