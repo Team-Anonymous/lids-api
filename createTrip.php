@@ -34,8 +34,8 @@ echo "tripid:".$tripid;
 $sql = "INSERT INTO tb_usertrips VALUES('$uuid',$tripid,0,$vehicleid,'$triplocation',true);";
 
 print $sql;
-
-if(mysqli_query($con,$sql)===TRUE)
+$result=mysqli_query($con,$sql);
+if($result===TRUE)
   print "db insert success";
 else
 {
