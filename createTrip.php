@@ -12,12 +12,10 @@ $requestArray = json_decode($requestJSONData,true);
 
 $con = mysqli_connect('localhost',USER,PASS,DB);
 
-
 $vehicleid = $requestArray["vehicleid"];
 $uuid = $requestArray["uuid"];
 
 $triplocation = $requestArray["triplocation"];
-
 $triplocation=json_encode($triplocation);
 $newtriplocation = array();
 array_push($newtriplocation, $triplocation);
