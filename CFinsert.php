@@ -1,13 +1,12 @@
 <?php
 	$con=mysqli_connect("localhost","root","","lids");
 
-$licenseid=$_POST("licenseid");
-$CF=$_POST("CF");
-$startDate=$_POST("startDate");
-$CFquota=$_POST("CFquota");
+$licenseid=mysqli_real_escape_string($con,$_POST['licenseid']);;
+$cf=mysqli_real_escape_string($con,$_POST['cf']);
+$startdate=mysqli_real_escape_string($con,$_POST['startdate']);
 
 
-$stget = mysqli_prepare($con, "SELECT * FROM user WHERE licenseno = ?");
+$stget = mysqli_prepare($con, "SELECT * FROM user WHERE licenseid= ?");
 mysqli_stmt_bind_param($stget, "s", $licenseid);
 mysqli_stmt_execute($stget);
 mysqli_stmt_store_result($stget);
@@ -16,14 +15,16 @@ mysqli_stmt_store_result($stget);
     $response = array();
     $response["success"] = false;  
     
-    while(mysqli_stmt_fetch($statement)){
+    while(mysqli_stmt_fetch($stget)){
         $response["success"] = true;  
-        $response["uuid"] = $uuid;
-        $response["username"] = $username;
-        $response["password"] = $password;
+        $response["licenseid"] = $licenseid;
+	$response["currentCF"] = $currentCF;
+        $response["startdate"] = $startdate;
+        $response["EstimatedExpiry"] $EstimatedExpiry;
+        $response["CFquota"]=$CFquota;
     }
-$sql = mysqli_prepare($con, "update tb_pollutionquotient set CFquota = ? , CurrentCF= ? where licenseid = ?");
-mysqli_stmt_bind_param($sql, "iis", $CFquota , $CurrentCF , $licenseid);
+$sql = mysqli_prepare($con, "update tb_pollutionquotient set CurrentCF= ? where licenseid = ?");
+mysqli_stmt_bind_param($sql, "iis", $CFquota , $CurrentCF+$cf , $licenseid);
 mysqli_stmt_execute($sql);
 $statement =mysqli_prepare($con,"Insert INTO tb_pollutionquotient(licenseid,0,5,10000) VALUES (?, ?, ?, ?)");
 mysqli_stmt_bind_param($statement,"sissi",$licenseid,$currentCF,$EstimatedExpiry,$CFquota);
