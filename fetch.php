@@ -6,10 +6,10 @@ define('DB','lids');
 
 $con = mysqli_connect(HOST,USER,PASS,DB);
 
-$vehicle_id=$_POST("vehicle_id");
+$vehicleID=$_POST("vehicleID");
 //$sql = "select TripLocation from location where vehicle_id in('107');"; 
 
-$sql = "select TripLocation from tb_usertrips where vehicle_id in('".$vehicle_id."');"; 
+$sql = "select TripLocation from tb_usertrips where vehicleID in('".$vehicleID."');"; 
 $res = mysqli_query($con,$sql);
  
 $result = array();
