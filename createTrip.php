@@ -10,10 +10,7 @@ $requestArray = json_decode($requestJSONData,true);
 
 print_r($requestArray);
 
-
-
 $con = mysqli_connect('localhost',USER,PASS,DB);
-
 
 
 $vehicleid = $requestArray["vehicleid"];
@@ -23,16 +20,30 @@ $triplocation = $requestArray["triplocation"];
 
 $triplocation=json_encode($triplocation);
 
-// echo $triplocation;
+echo $triplocation;
 
-$tripid = mysqli_query($con,"SELECT COUNT(*) FROM tb_usertrips WHERE uuid='$uuid';");
+$stmt = mysqli_prepare($con,"SELECT COUNT(*) FROM tb_usertrips WHERE uuid='$uuid';");
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt,$tripid);
+
+
 $tripid=$tripid+1;
 
+echo "tripid:".$tripid;
 
-$sql = "INSERT INTO tb_usertrips (UUID,TripID,Duration,VehicleID,TripLocation,isTripLive) VALUES('$uuid',$tripid,0,$vehicleid,'$triplocation',true);";
+$sql = "INSERT INTO tb_usertrips VALUES('$uuid',$tripid,0,$vehicleid,'$triplocation',true);";
 
-$stmt = mysqli_prepare($con,$sql);
-mysqli_stmt_execute($stmt);
+print $sql;
+
+if(mysqli_query($con,$sql)===TRUE)
+  print "db insert success";
+else
+{
+  // print mysqli_error($con);
+  print "db insert fail";
+}
+
+
 
 mysqli_close($con);
 
