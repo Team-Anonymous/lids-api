@@ -16,8 +16,8 @@ $sql = "select COUNT(*) from tb_usertrips where uuid in('".$uuid."');";
 $res = mysqli_query($con,$sql);
 $tripid=$res+1;
 echo "tripid:".$tripid;
-$sql = "INSERT INTO tb_usertrips VALUES('106',221,0,2,'sanfbasjf',true);";
-//$sql = "INSERT INTO tb_usertrips VALUES('".$uuid."','".$tripid."',0,'".$vehicleid."','".$triplocation."',true);";
+//$sql = "INSERT INTO tb_usertrips VALUES('106',221,0,2,'sanfbasjf',true);";
+$sql = "INSERT INTO tb_usertrips VALUES('".$uuid."','".$tripid."',0,'".$vehicleid."','".$triplocation."',true);";
 print $sql;
 $result=mysqli_query($con,$sql);
 if($result===TRUE)
