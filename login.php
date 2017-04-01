@@ -1,15 +1,15 @@
 <?php
-    $con = mysqli_connect("localost", "root", "", "lids");
+    $con = mysqli_connect("localhost", "root", "", "lids");
     
     $username = $_POST["username"];
     $password = $_POST["password"];
     
-    $statement = mysqli_prepare($con, "SELECT * FROM user WHERE username = ? AND password = ?");
+    $statement = mysqli_prepare($con, "SELECT * FROM tb_userinfo WHERE username = ? AND password = ?");
     mysqli_stmt_bind_param($statement, "ss", $username, $password);
     mysqli_stmt_execute($statement);
     
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $user_id, $name, $age, $username, $password);
+    mysqli_stmt_bind_result($statement, $uuid, $username, $password, $licenseno, $vehicleid);
     
     $response = array();
     $response["success"] = false;  
