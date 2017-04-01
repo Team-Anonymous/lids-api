@@ -1,8 +1,9 @@
 <?php
 	$con=mysqli_connect("localhost","root","","lids");
 
-$licenseid=mysqli_real_escape_string($con,$_POST['licenseid']);;
-$cf=$_POST['cf'];
+$licenseid=mysqli_real_escape_string($con,$_POST['licenseid']);
+$cf=mysqli_real_escape_string($con,$_POST['cf']);
+$cf=(int)$cf;
 echo $cf;
 $startdate=mysqli_real_escape_string($con,$_POST['startdate']);
 
