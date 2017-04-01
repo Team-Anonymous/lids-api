@@ -11,7 +11,7 @@ $uuid = $requestArray["uuid"];
 echo "uuid: " .$uuid;
 $triplocation = $requestArray["triplocation"];
 $triplocation=json_encode($triplocation);
-echo $triplocation;
+echo "triplocation:".$triplocation;
 $sql = "select COUNT(*) from tb_usertrips where uuid in('".$uuid."');"; 
 $res = mysqli_query($con,$sql);
 $tripid=$res+1;
