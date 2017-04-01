@@ -21,7 +21,7 @@ $timestampMs=$requestArray["timestampMs"];
 
 $con = mysqli_connect('localhost',USER,PASS,DB);
 $sql="INSERT INTO tb_usertrips (UUID,VehicleID,isTripLive,Duration) VALUES('$uuid',$vehicleid,1,0);";
-print($sql."\n");
+// print($sql."\n");
 $result = mysqli_query($con,$sql);
 // if($result)
 // {
@@ -39,7 +39,7 @@ mysqli_close($con);
 $con = mysqli_connect('localhost',USER,PASS,DB);
 
 $sql="INSERT INTO tb_usertrips_loc VALUES($tripid,$latitudeE7,$longitudeE7,$timestampMs);";
-print($sql."\n");
+// print($sql."\n");
 $result=mysqli_query($con,$sql);
 
 // if($result)
