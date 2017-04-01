@@ -9,7 +9,7 @@
     mysqli_stmt_execute($statement);
     
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $uuid, $username, $password, $licenseno, $vehicleid);
+    mysqli_stmt_bind_result($statement, $uuid, $username, $password);
     
     $response = array();
     $response["success"] = false;  
