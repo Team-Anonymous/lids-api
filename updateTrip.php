@@ -15,7 +15,7 @@ $uuid = $requestArray["uuid"];
 $latitudeE7 = $requestArray["latitudeE7"];
 $longitudeE7=$requestArray["longitudeE7"];
 $timestampMs=$requestArray["timestampMs"];
-$istripalive=$requestArray["istripalive"];
+$istriplive=$requestArray["istriplive"];
 $tripid=$requestArray["tripid"];
 $duration=$requestArray["duration"];
 
@@ -35,7 +35,7 @@ $result=mysqli_query($con,$sql);
 mysqli_close($con);
 
 $con = mysqli_connect('localhost',USER,PASS,DB);
-$sql="UPDATE tb_usertrips SET isTripLive=$istripalive,duration=$duration WHERE TripID=$tripid;";
+$sql="UPDATE tb_usertrips SET isTripLive=$istriplive,duration=$duration WHERE TripID=$tripid;";
 // print($sql."\n");
 $result=mysqli_query($con,$sql);
 // if($result)
