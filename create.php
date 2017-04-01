@@ -13,7 +13,7 @@ $triplocation=json_encode($triplocation);
 echo $triplocation;
 $sql = "select COUNT(*) from tb_usertrips where uuid in('".$uuid."');"; 
 $res = mysqli_query($con,$sql);
-$tripid=$tripid+1;
+$tripid=$res+1;
 echo "tripid:".$tripid;
 
 $sql = "INSERT INTO tb_usertrips VALUES('".$uuid."','".$tripid."',0,'".$vehicleid."','".$triplocation."',true);";
