@@ -23,7 +23,7 @@ $newtriplocation = array();
 array_push($newtriplocation, $triplocation);
 $newtriplocation = json_encode($newtriplocation);
 
-echo $newtriplocation;
+// echo $newtriplocation;
 
 $stmt = $con->query("SELECT * FROM tb_usertrips WHERE uuid='$uuid';");
 $tripid=$stmt->num_rows;
