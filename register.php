@@ -1,10 +1,16 @@
 <?php
 	$con=mysqli_connect("localhost","root","","lids");
-$uuid=$_POST['uuid'];
-$username=$_POST['username'];
-$licenseno=$_POST('licenseno');
-$vehicleid=$_POST('vehicleid');
-$password=$_POST('password');
+//$uuid=$_POST['uuid'];
+//$username=$_POST['username'];
+//$licenseno=$_POST('licenseno');
+//$vehicleid=$_POST('vehicleid');
+//$password=$_POST('password');
+$uuid=mysli_real_escape_string($con,$_POST['uuid']);
+$username=mysli_real_escape_string($con,$_POST['username']);
+$licenseno=mysli_real_escape_string($con,$_POST['licenseno']);
+$vehicleid=mysli_real_escape_string($con,$_POST['vehicleid']);
+$password=mysli_real_escape_string($con,$_POST['password']);
+
 $statement =mysqli_prepare($con,"Insert INTO tb_userinfo(uuid,username,password,licensenumber,vehicleid) VALUES (?, ?, ?, ?,?)");
 mysqli_stmt_bind_param($statement,"ssssi",$uuid,$username,$password,$licenseno,$vehicleid);
 mysqli_stmt_execute($statement);
