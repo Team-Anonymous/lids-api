@@ -14,8 +14,8 @@ $res = mysqli_query($con,$sql);
 $fin=array();
 while($data=mysqli_fetch_row($res))
 {
-//array_push($fin,json_decode($data[0]));
-  print($data[0]);
+  array_push($fin,json_decode($data[0]));
+  //print($data[0]);
 }
 echo json_encode($fin);
 mysqli_close($con);
