@@ -11,9 +11,9 @@ $vehicleID=101;
 
 $sql = "select TripLocation from tb_usertrips where vehicleID in('".$vehicleID."');"; 
 $res = mysqli_query($con,$sql);
-while($data=mysqli_fetch_assoc($res))
+while($data=mysqli_fetch_row($res))
 {
-echo $data;
+echo $data[0];
 }
 var_dump(json_decode($res,true));
  
