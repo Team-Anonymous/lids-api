@@ -17,15 +17,14 @@ $uuid = $requestArray["uuid"];
 
 $triplocation = $requestArray["triplocation"];
 $triplocation=json_encode($triplocation);
-$newtriplocation = array();
-array_push($newtriplocation, $triplocation);
-$newtriplocation = json_encode($newtriplocation);
+// $newtriplocation = array();
+// array_push($newtriplocation, $triplocation);
+// $newtriplocation = json_encode($newtriplocation);
 
 // echo $newtriplocation;
 
 $stmt = $con->query("SELECT * FROM tb_usertrips WHERE uuid='$uuid';");
 $tripid=$stmt->num_rows;
-
 // echo "tripid:".$tripid;
 $tripid=$tripid+1;
 
@@ -33,8 +32,7 @@ $tripid=$tripid+1;
 mysqli_close($con);
 $con = mysqli_connect('localhost',USER,PASS,DB);
 
-
-$sql="INSERT INTO tb_usertrips VALUES ('".$uuid."',$tripid,0,$vehicleid,'".$newtriplocation."',1)";
+$sql="INSERT INTO tb_usertrips VALUES ('".$uuid."',$tripid,0,$vehicleid,'".$triplocation."',1)";
 
 // print "\n";
 // print $sql;

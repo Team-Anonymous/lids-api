@@ -9,25 +9,25 @@ $requestJSONData = file_get_contents('php://input');
 $requestArray = json_decode($requestJSONData,true);
 
 
-$con = mysqli_connect('localhost',USER,PASS,DB);
-// 
+// parse json post request
 $vehicleid = $requestArray["vehicleid"];
 $uuid = $requestArray["uuid"];
 $triplocation = $requestArray["triplocation"];
 $triplocation=json_encode($triplocation);
+$istripalive=$requestArray["istripalive"];
+$tripid=$requestArray["tripid"];
 
-$locationHistory=mysqli_query("SELECT triplocation FROM tb_usertrips WHERE VehicleID=$vehicleid AND UUID='".$uuid."' AND isTripLive=1;")
-$result = mysql_fetch_assoc(locationHistory);
-print $result;
-// $locationHistory=json_decode($locationHistory);
 
-// locationHistory.push($triplocation);
+$con = mysqli_connect('localhost',USER,PASS,DB);
+$result=mysqli_query($con,"SELECT triplocation FROM tb_usertrips WHERE VehicleID=$vehicleid AND UUID='$uuid' AND isTripLive=1;");
 
-// triplocation=json_encode($locationHistory);
+$locationHistory = mysqli_fetch_assoc($result); //associative array
+mysqli_close($con);
 
-// $sql = "UPDATE tb_usertrips SET longitude = $longitude , latitude = $latitude WHERE UUID ='$uuid' AND isTripLive='true' AND  vehicleid=$vehicleid;" ;
-// $stmt = mysqli_prepare($con,$sql);
-// mysqli_stmt_execute($stmt);
+$con = mysqli_connect('localhost',USER,PASS,DB);
+$sql="INSERT INTO tb_usertrips VALUES ('".$uuid."',$tripid,0,$vehicleid,'".$triplocation."',$istripalive)";
+$stmt = mysqli_prepare($con,$sql);
+mysqli_stmt_execute($stmt);
 
 mysqli_close($con);
 
