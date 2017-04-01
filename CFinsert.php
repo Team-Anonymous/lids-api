@@ -3,6 +3,7 @@
 
 $licenseid=mysqli_real_escape_string($con,$_POST['licenseid']);;
 $cf=$_POST['cf'];
+echo "cf:" $cf;
 $startdate=mysqli_real_escape_string($con,$_POST['startdate']);
 
 
