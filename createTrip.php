@@ -25,7 +25,7 @@ $triplocation=json_encode($triplocation);
 
 // echo $triplocation;
 
-$tripid = mysqli_query("SELECT COUNT(*) FROM tb_usertrips WHERE uuid='$uuid';");
+$tripid = mysqli_query($con,"SELECT COUNT(*) FROM tb_usertrips WHERE uuid='$uuid';");
 $tripid=$tripid+1;
 
 
