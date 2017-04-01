@@ -14,9 +14,7 @@ print_r($requestArray);
 
 $con = mysqli_connect('localhost',USER,PASS,DB);
 
-$tripid = mysqli_query("SELECT COUNT(*) FROM tb_usertrips WHERE uuid='$uuid';");
 
-$tripid=$tripid+1;
 
 $vehicleid = $requestArray["vehicleid"];
 $uuid = $requestArray["uuid"];
@@ -25,7 +23,10 @@ $triplocation = $requestArray["triplocation"];
 
 $triplocation=json_encode($triplocation);
 
-echo $triplocation;
+// echo $triplocation;
+
+$tripid = mysqli_query("SELECT COUNT(*) FROM tb_usertrips WHERE uuid='$uuid';");
+$tripid=$tripid+1;
 
 
 $sql = "INSERT INTO tb_usertrips (UUID,TripID,Duration,VehicleID,TripLocation,isTripLive) VALUES('$uuid',$tripid,0,$vehicleid,'$triplocation',true);";
