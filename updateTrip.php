@@ -12,16 +12,25 @@ $requestArray = json_decode($requestJSONData,true);
 // parse json post request
 $vehicleid = $requestArray["vehicleid"];
 $uuid = $requestArray["uuid"];
-$triplocation = $requestArray["triplocation"];
-$triplocation=json_encode($triplocation);
+$latitudeE7 = $requestArray["latitudeE7"];
+$longitudeE7=$requestArray["longitudeE7"];
+$timestampMs=$requestArray["timestampMs"];
 $istripalive=$requestArray["istripalive"];
 $tripid=$requestArray["tripid"];
+$duration=$requestArray["duration"];
 
+$sql="INSERT INTO tb_usertrips_loc VALUES($tripid,$latitudeE7,$longitudeE7,$timestampMs);";
+// print($sql."\n");
+$result=mysqli_query($con,$sql);
+// if($result)
+// {
+// 	echo 'query successfull';
+// }
+// else 
+// {
+// 	echo "query fail";
+// }
 
-$con = mysqli_connect('localhost',USER,PASS,DB);
-$result=mysqli_query($con,"SELECT triplocation FROM tb_usertrips WHERE VehicleID=$vehicleid AND UUID='$uuid' AND isTripLive=1;");
-
-$locationHistory = mysqli_fetch_assoc($result); //associative array
 mysqli_close($con);
 
 $con = mysqli_connect('localhost',USER,PASS,DB);

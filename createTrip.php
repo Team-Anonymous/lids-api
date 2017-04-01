@@ -33,9 +33,10 @@ $result = mysqli_query($con,$sql);
 // }
 
 $tripid = mysqli_insert_id($con);
-$trip = array("tripid"=>$tripid);
+// $trip = array("tripid"=>$trip)
 
-echo json_encode($trip);
+// echo json_encode('{ "tripid": '.$tripid.' }');
+echo '{ "tripid": '.$tripid.' }';
 
 mysqli_close($con);
 $con = mysqli_connect('localhost',USER,PASS,DB);
