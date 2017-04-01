@@ -6,7 +6,7 @@ define('DB','lids');
 
 $con = mysqli_connect(HOST,USER,PASS,DB);
 
-$vehicleID=$_POST("vehicleID");
+$vehicleID=107;
 //$sql = "select TripLocation from location where vehicle_id in('107');"; 
 
 $sql = "select TripLocation from tb_usertrips where vehicleID in('".$vehicleID."');"; 
