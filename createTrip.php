@@ -17,7 +17,7 @@ $tripid=$sql+1;
 
 $triplocationJsonarr = array("locations"=>,$triplocation);
 
-triplocation=json_encode($triplocationJsonarr);
+$triplocation=json_encode($triplocationJsonarr);
 
 $sql = "INSERT INTO tb_usertrips (UUID,TripID,Duration,VehicleID,TripLocation,isTripLive) VALUES('$uuid',$tripid,0,$vehicleid,'$triplocation',$istriplive);";
 
