@@ -18,7 +18,7 @@ $tripid=$tripid+1;
 $triplocation=$stmt->triplocation + $triplocation;
 mysqli_close($con);
 $con = mysqli_connect('localhost',USER,PASS,DB);
-$sql="INSERT INTO tb_usertrips VALUES ('".$uuid."',$tripid,0,$vehicleid,'".$triplocation."',1)";
+$sql="update tb_usertrips set duration='" $duration"' ,triplocation='".$triplocation."' where uuid='".$uuid."' ";
 // print "\n";
 // print $sql;
 $result= $con->query($sql);
