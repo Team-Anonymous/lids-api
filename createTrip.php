@@ -40,12 +40,12 @@ $sql="INSERT INTO tb_usertrips VALUES ('".$uuid."',$tripid,0,$vehicleid,'".$trip
 
 $result= $con->query($sql);
 // if($result)
-//  // print "db insert success";
+// 	// print "db insert success";
 // else
 // {
-//  // print mysqli_error($con);
-//  // print "db insert fail\n";
-//  // print $con->error;
+// 	// print mysqli_error($con);
+// 	// print "db insert fail\n";
+// 	// print $con->error;
 
 // }
 
