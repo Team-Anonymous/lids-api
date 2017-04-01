@@ -23,14 +23,14 @@ $con = mysqli_connect('localhost',USER,PASS,DB);
 $sql="INSERT INTO tb_usertrips (UUID,VehicleID,isTripLive,Duration) VALUES('$uuid',$vehicleid,1,0);";
 print($sql."\n");
 $result = mysqli_query($con,$sql);
-if($result)
-{
-	echo 'query successfull';
-}
-else 
-{
-	echo "query fail";
-}
+// if($result)
+// {
+// 	echo 'query successfull';
+// }
+// else 
+// {
+// 	echo "query fail";
+// }
 
 $tripid = mysqli_insert_id($con);
 echo '{ "tripid": '.$tripid.' }';
@@ -42,14 +42,14 @@ $sql="INSERT INTO tb_usertrips_loc VALUES($tripid,$latitudeE7,$longitudeE7,$time
 print($sql."\n");
 $result=mysqli_query($con,$sql);
 
-if($result)
-{
-	echo 'query successfull';
-}
-else 
-{
-	echo "query fail";
-}
+// if($result)
+// {
+// 	echo 'query successfull';
+// }
+// else 
+// {
+// 	echo "query fail";
+// }
 
 
 mysqli_close($con);
