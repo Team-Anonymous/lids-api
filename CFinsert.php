@@ -25,7 +25,7 @@ mysqli_stmt_store_result($stget);
         $response["CFquota"]=$CFquota;
     }
 $sql = mysqli_prepare($con, "update tb_pollutionquotient set CurrentCF= ? where licenseid = ?");
-mysqli_stmt_bind_param($sql, "iis", $CFquota , $CurrentCF + $cf , $licenseid);
+mysqli_stmt_bind_param($sql, "iis", $CFquota , $($CurrentCF + $cf) , $licenseid);
 mysqli_stmt_execute($sql);
 $statement =mysqli_prepare($con,"Insert INTO tb_pollutionquotient(licenseid,0,5,10000) VALUES (?, ?, ?, ?)");
 mysqli_stmt_bind_param($statement,"sissi",$licenseid,$currentCF,$EstimatedExpiry,$CFquota);
