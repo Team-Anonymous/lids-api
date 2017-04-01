@@ -10,5 +10,6 @@ $statement =mysqli_prepare($con,"Insert INTO tb_userinfo(uuid,username,password,
 mysqli_stmt_bind_param($statement,"ssssi",$uuid,$username,$password,$licenseno,$vehicleid);
 mysqli_stmt_execute($statement);
 mysqli_stmt_close($statement);
+echo $uuid;
 mysqli_close($con);
 ?>
