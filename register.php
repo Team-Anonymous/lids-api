@@ -1,6 +1,5 @@
 <?php
 	$con=mysqli_connect("localhost","root","","lids");
-
 $uuid=$_POST['uuid'];
 $username=$_POST['username'];
 $licenseno=$_POST('licenseno');
