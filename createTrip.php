@@ -4,29 +4,37 @@ define('USER','root');
 define('PASS','');
 define('DB','lids');
 
+$requestJSONData = file_get_contents('php://input');
+
+$requestArray = json_decode($requestJSONData,true);
+
+print_r($requestArray);
+
+
+
 $con = mysqli_connect('localhost',USER,PASS,DB);
 
-$uuid= mysqli_real_escape_string($con, $_POST['uuid']);
-$vehicleid= mysqli_real_escape_string($con, $_POST['vehicleid']);
-$triplocation= mysqli_real_escape_string($con, $_POST['triplocation']);
-$istriplive= mysqli_real_escape_string($con, $_POST['istriplive']);
-echo $uuid
-echo $vehiceid
-//$sql = "SELECT COUNT(*) FROM tb_usertrips WHERE uuid='$uuid';";
+$tripid = mysqli_query("SELECT COUNT(*) FROM tb_usertrips WHERE uuid='$uuid';");
 
-//$tripid=$sql+1;
+$tripid=$tripid+1;
 
-//$triplocationJsonarr = array("locations"=>json_decode($triplocation));
+$vehicleid = $requestArray["vehicleid"];
+$uuid = $requestArray["uuid"];
 
-//$triplocation=json_encode($triplocationJsonarr);
+$triplocation = $requestArray["triplocation"];
 
-//$sql = "INSERT INTO tb_usertrips (UUID,TripID,Duration,VehicleID,TripLocation,isTripLive) VALUES('$uuid',$tripid,0,$vehicleid,'$triplocation',$istriplive);";
+$triplocation=json_encode($triplocation);
 
-//$stmt = mysqli_prepare($con,$sql);
-//mysqli_stmt_execute($stmt);
+echo $triplocation;
 
-//mysqli_close($con);
 
-//echo $tripid;
+$sql = "INSERT INTO tb_usertrips (UUID,TripID,Duration,VehicleID,TripLocation,isTripLive) VALUES('$uuid',$tripid,0,$vehicleid,'$triplocation',true);";
+
+$stmt = mysqli_prepare($con,$sql);
+mysqli_stmt_execute($stmt);
+
+mysqli_close($con);
+
+// echo $tripid;
 
 ?>
