@@ -15,7 +15,7 @@ $sql = "SELECT COUNT(*) FROM tb_usertrips WHERE uuid='$uuid';";
 
 $tripid=$sql+1;
 
-$triplocationJsonarr = array("locations"=>$triplocation);
+$triplocationJsonarr = array("locations"=>json_decode($triplocation));
 
 $triplocation=json_encode($triplocationJsonarr);
 
