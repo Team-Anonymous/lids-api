@@ -20,7 +20,7 @@ echo $EstimateExpiry;
 		$updatecf=$oldcf+$cf;
 		$query="update tb_pollutionquotient set CurrentCF='$updatecf', EstimateExpiry='".$EstimateExpiry."' where licenseid='$licenseid'";
 		$result=mysqli_query($con,$query);
-
+		echo mysqli_error($con);
 	}
 	else {
 		$query="insert into tb_pollutionquotient values ($licenseid,$cf,'".$startdate."','".$EstimateExpiry."',10000)";
