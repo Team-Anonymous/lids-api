@@ -7,11 +7,11 @@
 	$cf=(int)$cf;
 	$startdate=$requestArray['startdate'];
 $current =  date("Y-m-d");
-$days_between = floor((strtotime($current)- strtotime($start))/24/3600/60/60);
+$days_between = floor((strtotime($current)- strtotime($startdate))/24/3600/60/60);
 if($days_between==0)$days_between=1;
 $cfpday=$cf / $days_between;
 $expire=floor((10000 - $cf)/$cfpday);
-$EstimateExpiry=date('Y-m-d', strtotime($Date. ' + '.$expire.' days'));
+$EstimateExpiry= date('Y-m-d', strtotime($current. ' + '.$expire.' days'));
 	$stget = mysqli_query($con, "SELECT * FROM tb_pollutionquotient WHERE LicenseID= '$licenseid'");
 	if(mysqli_num_rows($stget)>0){
 		$row=mysqli_fetch_assoc($stget);
