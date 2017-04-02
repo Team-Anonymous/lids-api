@@ -18,7 +18,7 @@ echo $EstimateExpiry;
 		$row=mysqli_fetch_assoc($stget);
 		$oldcf=$row["CurrentCF"];
 		$updatecf=$oldcf+$cf;
-		$query="update tb_pollutionquotient set CurrentCF='$updatecf', EstimateExpiry='".$EstimateExpiry."' where licenseid='$licenseid'";
+		$query="update tb_pollutionquotient set CurrentCF='$updatecf', EstimatedExpiry='".$EstimateExpiry."' where licenseid='$licenseid'";
 		$result=mysqli_query($con,$query);
 		echo mysqli_error($con);
 	}
