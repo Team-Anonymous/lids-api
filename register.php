@@ -19,6 +19,11 @@ $statement =mysqli_prepare($con,"Insert INTO tb_vehiclecommand(vehicleid,license
 mysqli_stmt_bind_param($statement,"ss",$vehicleid,$licenseno);
 mysqli_stmt_execute($statement);
 mysqli_stmt_close($statement);
+
+$statement =mysqli_prepare($con,"Insert INTO tb_vehiclecommand(vehicleid,licenseid) VALUES (?,?)");
+mysqli_stmt_bind_param($statement,"ss",$vehicleid,$licenseno);
+mysqli_stmt_execute($statement);
+mysqli_stmt_close($statement);
 echo $uuid;
 echo "hello";
 mysqli_close($con);
