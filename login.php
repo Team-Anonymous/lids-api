@@ -8,7 +8,7 @@ echo $username;
     echo $password;
     $statement = mysqli_query($con, "SELECT * FROM tb_userinfo WHERE UserName =$username AND password = $password ");
 print_r($statement);
-    if($statement){
+    if(mysqli_num_rows($statement)){
           printf("success");
     }
     else{
