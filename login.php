@@ -2,8 +2,8 @@
     $con = mysqli_connect("localhost", "root", "", "lids");
     //$username = mysqli_real_escape_string($con,$_POST['username']);
     //$password =mysqli_real_escape_string($con,$_POST['password']);
-    $username=$_POST['username'];
-$password=$_POST['password'];
+    $username=$_GET['username'];
+$password=$_GET['password'];
 echo $username;
     echo $password;
     $statement = mysqli_query($con, "SELECT * FROM tb_userinfo WHERE username = '$username' AND password = '$password'");
