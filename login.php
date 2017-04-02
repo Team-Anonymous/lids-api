@@ -9,7 +9,7 @@ echo $username;
     $statement = mysqli_query($con, "SELECT * FROM tb_userinfo WHERE UserName = '".$username."' AND password = '".$password."' ");
 print_r($statement);
     if(mysqli_num_rows($statement)>0){
-          echo "success
+          echo "success";
     }
     else{
         echo "authentication failed !";
