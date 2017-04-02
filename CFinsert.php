@@ -14,7 +14,7 @@ $days_between = floor((strtotime($current)- strtotime($start))/24/3600/60/60);
 if($days_between==0)$days_between=1;
 $cfpday=$cf / $days_between;
 $expire=floor((10000 - $cf)/$cfpday);
-$EstimateExpury=date('Y-m-d', strtotime($Date. ' + '.$expire.' days'));
+$EstimateExpiry=date('Y-m-d', strtotime($Date. ' + '.$expire.' days'));
 $stget = mysqli_prepare($con, "SELECT * FROM user WHERE licenseid= ?");
 mysqli_stmt_bind_param($stget, "s", $licenseid);
 mysqli_stmt_execute($stget);
