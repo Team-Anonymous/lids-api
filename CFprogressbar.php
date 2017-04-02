@@ -9,7 +9,9 @@ $sql = "SELECT CurrentCF FROM tb_pollutionquotient WHERE LicenseID='".$licenseid
 
 $con = mysqli_connect(HOST,USER,PASS,DB);
 $res = mysqli_query($con,$sql);
-echo $res;
+$row=mysqli_fetch_asoc($res);
+$ans=$row['CurrentCF'];
+echo $ans;
 mysqli_close($con);
 
 ?>
