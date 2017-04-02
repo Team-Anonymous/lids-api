@@ -29,11 +29,12 @@ if(isset($uuid) && !isset($tripid))
 
 $con = mysqli_connect(HOST,USER,PASS,DB);
 $res = mysqli_query($con,$sql);
-$row = mysqli_fetch_assoc($res);
+$nrows = mysqli_num_rows($res);
 $fin=array();
-while($data=mysqli_fetch_assoc($res))
+while($nrows--)
 {
-	array_push($fin,$data);
+	$row=mysqli_fetch_assoc($res);
+	array_push($fin,$row);
   //print($data[0]);
 }
 echo json_encode($fin);
