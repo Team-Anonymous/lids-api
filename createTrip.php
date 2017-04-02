@@ -10,7 +10,6 @@ $requestArray = json_decode($requestJSONData,true);
 
 // print_r($requestArray);
 
-$con = mysqli_connect('localhost',USER,PASS,DB);
 
 $uuid = $requestArray["uuid"];
 $vehicleid = $requestArray["vehicleid"];
