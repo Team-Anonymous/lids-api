@@ -5,7 +5,7 @@
     $username=$_GET['username'];
 $password=$_GET['password'];
 echo $username;
-    echo $password;
+    //echo $password;
     $statement = mysqli_query($con, "SELECT * FROM tb_userinfo WHERE UserName = '".$username."'  ");
 print_r($statement);
     if(mysqli_num_rows($statement)>0){
