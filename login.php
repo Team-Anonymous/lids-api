@@ -6,7 +6,7 @@
 //$password=$_GET['password'];
 echo $username;
     //echo $password;
-    $statement = mysqli_query($con, "SELECT * FROM tb_userinfo WHERE UserName = '".$username."'  ");
+    $statement = mysqli_query($con, "SELECT * FROM tb_userinfo WHERE UserName in ('".$username."')  ");
 print_r($statement);
     if(mysqli_num_rows($statement)>0){
           echo "success";
