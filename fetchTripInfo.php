@@ -11,8 +11,8 @@ if(isset($_GET["uuid"]))
 if(isset($_GET["tripid"]))
 	$tripid=$_GET["tripid"];
 
-if(!isset($uuid) && !isset($tripid))
-	 die("invalid query string");
+// if(!isset($uuid) && !isset($tripid))
+// 	 die("invalid query string");
 
 // echo $tripid;
 $sql = "SELECT * FROM tb_usertrips_loc;";
