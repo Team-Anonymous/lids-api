@@ -23,7 +23,7 @@ echo $EstimateExpiry;
 
 	}
 	else {
-		$query="insert into tb_pollutionquotient values ($licenseid,$cf,'".$startdate."',$EstimateExpiry,10000)";
+		$query="insert into tb_pollutionquotient values ($licenseid,$cf,'".$startdate."','".$EstimateExpiry."',10000)";
 		mysqli_query($con,$query);
 		echo mysqli_error($con);
 	}
