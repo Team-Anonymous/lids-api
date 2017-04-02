@@ -12,6 +12,7 @@ if($days_between==0)$days_between=1;
 $cfpday=$cf / $days_between;
 $expire=floor((10000 - $cf)/$cfpday);
 $EstimateExpiry= date('Y-m-d', strtotime($current. ' + '.$expire.' days'));
+echo $EstimateExpiry;
 	$stget = mysqli_query($con, "SELECT * FROM tb_pollutionquotient WHERE LicenseID= '$licenseid'");
 	if(mysqli_num_rows($stget)>0){
 		$row=mysqli_fetch_assoc($stget);
