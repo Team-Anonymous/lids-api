@@ -9,5 +9,7 @@
   $imm=false;
   if($row["Immobilized"])
   $imm=true;
-  echo json_encode($imm);
+  $abc=array()
+  $abc["Immobilized"]=$imm
+  echo json_encode($abc);
   ?>
