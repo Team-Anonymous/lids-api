@@ -6,7 +6,7 @@
 $password=$_GET['password'];
 echo $username;
     echo $password;
-    $statement = mysqli_query($con, "SELECT * FROM tb_userinfo WHERE UserName =$username AND password = $password ");
+    $statement = mysqli_query($con, "SELECT * FROM tb_userinfo WHERE UserName ='".$username."' AND password = '".$password."' ");
 $row_count=mysqli_num_rows($statement);
 echo mysqli_error($con);
     if($row_count>0){
