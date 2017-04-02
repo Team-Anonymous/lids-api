@@ -3,36 +3,24 @@
 	$requestJSONData = file_get_contents('php://input');
 	$requestArray = json_decode($requestJSONData,true);
 	print_r($requestArray);
-$licenseid=$requestArray['licenseid'];
-$cf=$requestArray['cf'];
-$cf=(int)$cf;
-echo $cf;
-$startdate=$requestArray['startdate'];
+	$licenseid=$requestArray['licenseid'];
+	$cf=$requestArray['cf'];
+	$cf=(int)$cf;
+	$startdate=$requestArray['startdate'];
 
+	$stget = mysqli_query($con, "SELECT * FROM tb_pollutionquotient WHERE LicenseID= '$licenseid'");
+	if(mysqli_num_rows($stget)>0){
+		$row=mysqli_fetch_assoc($stget);
+		$oldcf=$row["CurrentCF"];
+		$updatecf=$oldcf+$cf;
+		$query="update tb_pollutionquotient set CurrentCF='$updatecf' where licenseid='$licenseid'";
+		$result=mysqli_query($con,$query);
 
-$stget = mysqli_prepare($con, "SELECT * FROM user WHERE licenseid= ?");
-mysqli_stmt_bind_param($stget, "s", $licenseid);
-mysqli_stmt_execute($stget);
-mysqli_stmt_store_result($stget);
-    mysqli_stmt_bind_result($stget, $licenseid, $currentCF, $startdate, $Cfquota);
-
-    $response = array();
-    $response["success"] = false;
-
-    while(mysqli_stmt_fetch($stget)){
-        $response["success"] = true;
-        $response["licenseid"] = $licenseid;
-	$response["currentCF"] = $currentCF;
-        $response["startdate"] = $startdate;
-        $response["CFquota"]=$CFquota;
-    }
-$sql = mysqli_prepare($con, "update tb_pollutionquotient set CurrentCF= ? where licenseid = ?");
-$sum=$cf + $CurrentCF;
-mysqli_stmt_bind_param($sql, "iis", $CFquota , $sum , $licenseid);
-mysqli_stmt_execute($sql);
-$statement =mysqli_prepare($con,"Insert INTO tb_pollutionquotient(licenseid,0,5,10000) VALUES (?, ?, ?, ?)");
-mysqli_stmt_bind_param($statement,"sissi",$licenseid,$currentCF,$EstimatedExpiry,$CFquota);
-mysqli_stmt_execute($statement);
-mysqli_stmt_close($statement);
-mysqli_close($con);
+	}
+	else {
+		$query="insert into tb_pollutionquotient values ($licenseid,$cf,'".$startdate."',0,10000)";
+		mysqli_query($con,$query);
+		echo mysqli_error($con);
+	}
+	mysqli_close($con);
 ?>
