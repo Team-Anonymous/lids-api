@@ -8,12 +8,9 @@
     mysqli_stmt_bind_param($statement, "ss", $username, $password);
     mysqli_stmt_execute($statement);
     
-    $response = array();
-    $response["success"] = false;  
-    
+  
     if(mysqli_stmt_fetch($statement)){
-        $response["success"] = true;  
-        echo "success";
+          echo "success";
     }
     else{
         echo "authentication failed !";
