@@ -10,12 +10,22 @@ if(isset($_GET["tripid"]))
 	$tripid=$_GET["tripid"];
 
 // echo $tripid;
+$sql = "SELECT * FROM tb_usertrips_loc;";
 
-if(isset($uuid))
-	echo "hello";
+if(isset($uuid) && isset($tripid))
+{
+	$sql="SELECT * FROM tb_usertrips_loc WHERE tb_usertrips_loc.TripID IN ( SELECT tb_usertrips.TripID FROM tb_usertrips where tb_usertrips.TripID = $tripid);";
 
-if(isset($tripid))
-	$sql = "select * from tb_usertrips_loc where TripID = ".$tripid.";"; 	
+}
+
+if(isset($tripid) && !isset($uuid))
+{
+	$sql = "select * from tb_usertrips_loc where TripID = ".$tripid.";";
+}
+if(isset($uuid) && !isset($tripid))
+{
+	$sql="SELECT * FROM tb_usertrips_loc WHERE tb_usertrips_loc.TripID IN ( SELECT tb_usertrips.TripID FROM tb_usertrips where tb_usertrips.UUID = $uuid);";
+}
 
 $con = mysqli_connect(HOST,USER,PASS,DB);
 $res = mysqli_query($con,$sql);
@@ -23,7 +33,7 @@ $row = mysqli_fetch_assoc($res);
 $fin=array();
 while($data=mysqli_fetch_assoc($res))
 {
-  array_push($fin,$data);
+	array_push($fin,$data);
   //print($data[0]);
 }
 echo json_encode($fin);
