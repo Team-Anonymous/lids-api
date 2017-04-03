@@ -4,12 +4,28 @@ define('USER','root');
 define('PASS','');
 define('DB','lids');
 
-if(!isset($_GET["count"]))
-	die("invalid query string");
+if(isset($_GET["count"]))
+	$count=$_GET["count"];
+if(isset($_GET["alertpriority"]))
+	$alertpriority=$_GET["alertpriority"];
 
-$count=$_GET["count"];
+if(!isset($count) && !isset($alertpriority))
+		die("invalid query parameters");
 
-$sql = "SELECT * FROM tb_alerts ORDER BY timestampMs DESC LIMIT $count ;";
+if(isset($count) && !isset($alertpriority))
+{
+	$sql = "SELECT * FROM tb_alerts ORDER BY timestampMs DESC LIMIT $count ;";
+}
+else if(!isset($count) && isset($alertpriority))
+{
+	$sql = "SELECT * FROM tb_alerts WHERE AlertPriority=$alertpriority ;";
+}
+else if(isset($count) && isset($alertpriority))
+{
+	$sql = "SELECT * FROM tb_alerts WHERE AlertPriority=$alertpriority ORDER BY timestampMs DESC LIMIT $count ;";
+}
+
+
 
 $con = mysqli_connect(HOST,USER,PASS,DB);
 $res = mysqli_query($con,$sql);
